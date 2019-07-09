@@ -98,7 +98,7 @@ def modified_box_pierce(x, lags):
         df[f't+{lag}'] = df['t'].shift(-lag)
         delta_hat.append( ( (df['t']-mu_hat)**2*(df[f't+{lag}']-mu_hat)**2 ).dropna().sum()/ (x.var()**2) )
         
-    q = len(x) * ((rho_hat[1:]/pd.Series(delta_hat))**2).sum()
+    q = len(x) * ((rho_hat[1:]/pd.Series(delta_hat)**0.5)**2).sum()
     return q
 
 
